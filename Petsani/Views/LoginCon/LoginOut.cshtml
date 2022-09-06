@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "LoginOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2>LoginOut</h2>
+
+@if (Session["Usr"] == null)
+{
+
+}
+else
+{
+    string Kullanici = (Session["Usr"] as Petsani.Models.mUsers).EMail;
+    Session.RemoveAll();
+    <span>
+
+        <h2 style="text-align:center" > @Kullanici</h2>
+        <h2 style="text-align:center">Çıkış Yaptınız </h2>
+    </span>
+    
+}

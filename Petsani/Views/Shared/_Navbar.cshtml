@@ -1,0 +1,83 @@
+﻿<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
+    <div class="container">
+        <a class="navbar-brand"><b>@Html.ActionLink("www.petsani.com", "Index", "Home", new { @class = "my_headlink" })</b></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item active">
+                    <span class="nav-link">@Html.ActionLink("Ana Sayfa", "Index", "Home")</span>
+                </li>
+
+                <li class="nav-item">
+                    <span class="nav-link"> @Html.ActionLink("Hakkında", "About", "Home")</span>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="road.html">Yolculuk</a>
+                </li>
+
+                <li class="nav-item">
+                    @if (Session["Usr"] == null)
+                    {
+
+                    }
+                    else
+                    {
+
+                        <span class="nav-link"> @Html.ActionLink("Blog", "Blog", "Home")</span>
+                    }
+
+                </li>
+
+                <li class="nav-item">
+                    <span class="nav-link"> @Html.ActionLink("İletişim", "Contact", "Home")</span>
+                </li>
+                <li class="nav-item">
+                    @if (Session["Usr"] == null)
+                    {
+
+                    }
+                    else
+                    {
+                        int Kullanici = (Session["Usr"] as Petsani.Models.mUsers).UserType;
+                        if (Kullanici == 2)
+                        {
+                            <span class="nav-link"> @Html.ActionLink("Üyeler", "Index", "mUsers")</span>
+                        }
+                        else { }
+                    }
+
+                </li>
+                <li class="nav-item">
+                    @if (Session["Usr"] == null)
+                    {
+                        <button onClick="location.href='@Url.Action("Login", "LoginCon")'" type="button" class="btn btn-success">Giriş</button>
+                    }
+                    else
+                    {
+                        <button onClick="location.href='@Url.Action("LoginOut", "LoginCon")'" type="button" class="btn btn-success">Çıkış</button>
+
+                    }
+
+                </li>
+                <li>
+                    @if (Session["Usr"] == null)
+                    {
+
+                    }
+                    else
+                    {
+                        string Kullanici = (Session["Usr"] as Petsani.Models.mUsers).EMail;
+                        <span>
+                            Hoşgeldiniz. @Kullanici
+                        </span>
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
